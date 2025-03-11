@@ -51,17 +51,17 @@ jobs:
 
       - name: Build binaries
         run: |
-          GOOS=darwin GOARCH=amd64 go build -ldflags="-X main.currentVersion=v${{ env.next_version }}" -o krems-darwin-amd64
-          GOOS=darwin GOARCH=arm64 go build -ldflags="-X main.currentVersion=v${{ env.next_version }}" -o krems-darwin-arm64
+          GOOS=darwin GOARCH=amd64 go build -ldflags="-X main.currentVersion=v${{ env.next_version }}" -o bthropic-darwin-amd64
+          GOOS=darwin GOARCH=arm64 go build -ldflags="-X main.currentVersion=v${{ env.next_version }}" -o bthropic-darwin-arm64
 
       - name: Upload Darwin AMD64 Binary
         run: |
-          gh release upload ${{ env.next_version }} ./krems-darwin-amd64 --clobber
+          gh release upload ${{ env.next_version }} ./bthropic-darwin-amd64 --clobber
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Upload Darwin ARM64 Binary
         run: |
-          gh release upload ${{ env.next_version }} ./krems-darwin-arm64 --clobber
+          gh release upload ${{ env.next_version }} ./bthropic-darwin-arm64 --clobber
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
