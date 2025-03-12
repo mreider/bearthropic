@@ -2,6 +2,8 @@
 
 Bearthropic (bthropic) is a CLI tool that connects Claude AI with Bear notes, allowing you to have AI conversations that are automatically saved and formatted in Bear.
 
+![bearthropic demo](docs/bthropic.gif)
+
 ## Prerequisites
 
 - [Bear](https://bear.app/) installed on your machine
@@ -10,101 +12,39 @@ Bearthropic (bthropic) is a CLI tool that connects Claude AI with Bear notes, al
 
 ## Installation
 
-### Option 1: Download Binary (Recommended)
+To install bthropic, run the following command in your terminal:
 
 ```bash
-# Download the latest release for your platform
-wget https://github.com/mreider/bearthropic/releases/latest/download/bearthropic-$(uname -s)-$(uname -m) -O bthropic
-
-# Make it executable
-chmod +x bthropic
-
-# Move to your PATH
-sudo mv bthropic /usr/local/bin/
+curl -s https://raw.githubusercontent.com/mreider/bearthropic/main/install.sh | bash
 ```
 
-### Option 2: Build from Source
 
-```bash
-# Clone the repository
-git clone https://github.com/matthewreider/bthropic
-cd bthropic
+This command downloads the latest version of the install script, detects your architecture, and installs the binary to `/usr/local/bin/bthropic`.
 
-# Build the binary
-go build -o bthropic
+## How it works
 
-# Optional: Move to your PATH
-sudo mv bthropic /usr/local/bin/
-```
-
-## Getting Started
-
-1. Initialize bthropic with your API key:
+Initialize bthropic with your API key:
 ```bash
 bthropic --init
 ```
 You'll be prompted to enter your Claude API key. The key will be stored securely in `~/.bthropic/config.json`.
 
-2. Start a conversation:
+Start a conversation:
 ```bash
 bthropic --start
 ```
 
-## Usage
-
-During an interactive session:
-
-1. Type your question when prompted
-2. Claude will respond and create a new Bear note with both your question and the response
-3. You'll be asked if you want to clarify or modify the response
-   - Answer 'y' to continue the conversation (the same note will be updated)
-   - Answer 'n' to end the session
+Uninstall bthropic:
+```bash
+bthropic --destroy
+```
 
 ## Example Session
 
 ```
-$ bthropic --start
-Starting new session with Claude. Type your question:
-> What are the main differences between Go and Rust?
-
-[Claude responds and creates a Bear note]
-
-Would you like to clarify or modify the response? (y/n): y
-> Can you elaborate more on memory management?
-
-[Claude updates the existing Bear note]
-
-Would you like to clarify or modify the response? (y/n): n
+$ bthropic 
+Starting new session with Claude.
+Enter your question: How many chucks could a wood chuck chuck?
+Note created. Review it; Ctrl-C or type 'end' to finish, or type changes:
+Enter your question: end
 ```
-
-## Building from Source
-
-1. Ensure you have Go 1.20+ installed:
-```bash
-go version
-```
-
-2. Clone the repository:
-```bash
-git clone https://github.com/matthewreider/bthropic
-cd bthropic
-```
-
-3. Install dependencies:
-```bash
-go mod download
-```
-
-4. Build the binary:
-```bash
-go build
-```
-
-5. Run the binary:
-```bash
-./bthropic --help
-```
-
-## License
-
-MIT
